@@ -1,23 +1,23 @@
-/**
- * Created by isakhankov on 27.08.17.
- */
+/* @flow */
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var api = require('./api');
+const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
-var app = express();
-// parse application/json
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Setup global variables for server
+global.__CLIENT__ = false;
+global.__SERVER__ = true;
+global.__DISABLE_SSR__ = false; // Disable server side render here
+global.__DEV__ = process.env.NODE_ENV !== 'production';
 
-//allow to wirte to public directory
-app.use(express.static('public'));
+// This should be the same with webpack context
+const dirRoot = require('path').join(process.cwd());
 
-app.use('/api', api);
-
-app.get('/*', function(req, res){
-    res.send('SPA');
-});
-
-app.listen(3000);
+// Settings of webpack-isomorphic-tools
+global.webpackIsomorphicTools = new WebpackIsomorphicTools(require('./tools/webpack/WIT.config'))
+  .server(dirRoot, () => {
+    if (__DEV__) {
+      require('./src/server');
+    } else {
+      // $FlowFixMe: server.js will be generated during compiling
+      require('./build/server'); // eslint-disable-line import/no-unresolved
+    }
+  });
