@@ -8,7 +8,6 @@ import chalk from 'chalk';
 
 import type { Store } from '../types';
 import rootReducer from './reducers';
-import {__DEV__} from "../../tools/flow/definitions/globalVariables";
 
 export default (history: Object, initialState: Object = {}): Store => {
   const middlewares = [
