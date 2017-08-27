@@ -20,17 +20,9 @@ router.get('/', function (req, res) {
 
 router.post('/offer', function (req, res) {
     var offer = req.body;
+    fileManager.saveOffer (offer);
 
-    fileManager.saveOffer (offer, function(err) {
-        if (err) {
-            res.status(404).send('Offer not saved');
-            return;
-        }
-
-        res.send('Offer saved');
-    });
-
-    res.send(req.body.test);
+    res.send('OK');
 });
 
 
