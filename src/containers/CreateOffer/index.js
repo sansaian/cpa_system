@@ -1,7 +1,6 @@
-/* eslint-disable react/sort-comp */
 import React, {Component} from 'react';
 
-export class UserInfo extends Component {
+export default class CreateOffer extends Component {
     render() {
         return (
             <div>

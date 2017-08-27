@@ -1,12 +1,10 @@
-/* @flow */
-
 import type {Dispatch} from './types';
 import {fetchUsersIfNeeded} from './containers/Home/action';
 import {fetchUserIfNeeded} from './containers/UserInfo/action';
-import HomePage from './containers/Home';
-import CreateOffer from './containers/CreateOffer';
 import UserInfoPage from './containers/UserInfo';
 import NotFoundPage from './containers/NotFound';
+import CreateOffer from "./containers/CreateOffer/index";
+import HomePage from "./containers/Home/index";
 
 export default [
     {
