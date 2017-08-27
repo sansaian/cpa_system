@@ -20,9 +20,9 @@ router.get('/', function (req, res) {
 
 router.post('/offer', function (req, res) {
     const offer = req.body;
-    fileManager.saveOffer(offer);
+    const object = fileManager.saveOffer(offer);
 
-    res.send('OK');
+    res.send(object);
 });
 
 router.get('/offer/:id', function (req, res) {
@@ -33,6 +33,12 @@ router.get('/offer/:id', function (req, res) {
     }
 
     res.send(offer);
+});
+
+router.get('/offer', function (req, res) {
+    const offers = fileManager.getOffers();
+
+    res.send(offers);
 });
 
 export default router;

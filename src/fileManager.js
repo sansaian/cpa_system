@@ -12,6 +12,8 @@ fileManager.saveOffer = function (object) {
     content.push(object);
     fs.writeFile(path.join(process.cwd(), './build/public/offers.json'), JSON.stringify(content), function () {
     });
+
+    return object;
 };
 
 fileManager.getOffer = function (id) {
@@ -21,6 +23,10 @@ fileManager.getOffer = function (id) {
     return content[index];
 };
 
+fileManager.getOffers = function () {
+
+    return content;
+};
 
 function guid() {
     function s4() {
