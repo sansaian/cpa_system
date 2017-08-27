@@ -19,6 +19,9 @@ import Html from './utils/Html';
 import App from './containers/App';
 import routes from './routes';
 import { port, host } from './config';
+import api from './api';
+// const bodyParser = require('body-parser');
+
 
 const app = express();
 
@@ -33,6 +36,9 @@ app.use(compression());
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
 app.use(favicon(path.join(process.cwd(), './build/public/favicon.ico')));
 app.use(express.static(path.join(process.cwd(), './build/public')));
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+
 
 // Run express as webpack dev server
 if (__DEV__) {
@@ -51,6 +57,7 @@ if (__DEV__) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
+app.use('/api', api);
 // Register server-side rendering middleware
 app.get('*', (req, res) => {
   if (__DEV__) webpackIsomorphicTools.refresh();
