@@ -25,5 +25,14 @@ router.post('/offer', function (req, res) {
     res.send('OK');
 });
 
+router.get('/offer/:id', function (req, res) {
+    const offer = fileManager.getOffer(req.params.id);
+    if (offer == null) {
+        res.status(403).send('Заказ с id: ' + req.params.id + ' не найден');
+        return;
+    }
+
+    res.send(offer);
+});
 
 export default router;
