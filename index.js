@@ -3,10 +3,14 @@
  */
 
 var express = require('express');
+var api = require('./api');
+
 var app = express();
 
-app.get('/', function(req, res){
-    res.send('hello world');
+app.use('/api', api);
+
+app.get('/*', function(req, res){
+    res.send('SPA');
 });
 
 app.listen(3000);
