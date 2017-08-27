@@ -2,10 +2,10 @@
  * Created by isakhankov on 27.08.17.
  */
 
-var express = require('express');
-var fileManager = require('./fileManager');
+import express from 'express';
+import fileManager from './fileManager';
 
-var router = express.Router();
+const router = express.Router();
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
@@ -19,13 +19,11 @@ router.get('/', function (req, res) {
 });
 
 router.post('/offer', function (req, res) {
-    var offer = req.body;
-    fileManager.saveOffer (offer);
+    const offer = req.body;
+    fileManager.saveOffer(offer);
 
     res.send('OK');
 });
 
 
-
-
-module.exports = router;
+export default router;
