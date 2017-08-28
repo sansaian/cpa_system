@@ -7,12 +7,12 @@ export default class OrderList extends Component {
 
         this.state = {
             items: []
-        },
+        };
 
         this.drawRows = this.drawRows.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const url = 'http://localhost:3000/api/offer';
         makeApiGet(url).then((data) => {
             this.prepareRows(data);
@@ -24,12 +24,13 @@ export default class OrderList extends Component {
         for (let i = 0; i < data.length; i++) {
             newState.items[data[i].id] = data[i];
         }
-        this.setState(newState);
+        this.setState(newState, () => console.log(this.state));
     }
 
     drawRows() {
         let result = [];
         let currentRow;
+        console.log(this.state.items, this.state.items.length);
         for (let i = 0; i < this.state.items.length; i++) {
             currentRow = this.state.items[i];
             result.push(
