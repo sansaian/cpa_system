@@ -1,11 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { Provider } from 'react-redux';
+import {render, unmountComponentAtNode} from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
+import {Provider} from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter } from 'react-router-redux';
+import {ConnectedRouter} from 'react-router-redux';
 
 import configureStore from './redux/store';
 
@@ -16,39 +16,40 @@ const store = configureStore(history, initialState);
 const mountNode = document.getElementById('react-view');
 
 const renderApp = () => {
-  const App = require('./containers/App').default;
+    const App = require('./containers/App').default;
 
-  render(
-    <AppContainer>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
-    </AppContainer>,
-    mountNode,
-  );
+    render(
+        <AppContainer>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <App/>
+                </ConnectedRouter>
+            </Provider>
+        </AppContainer>
+        ,
+        mountNode,
+    );
 };
 
 // Enable hot reload by react-hot-loader
 if (module.hot) {
-  const reRenderApp = () => {
-    try {
-      renderApp();
-    } catch (error) {
-      const RedBox = require('redbox-react').default;
+    const reRenderApp = () => {
+        try {
+            renderApp();
+        } catch (error) {
+            const RedBox = require('redbox-react').default;
 
-      render(<RedBox error={error} />, mountNode);
-    }
-  };
+            render(<RedBox error={error}/>, mountNode);
+        }
+    };
 
-  module.hot.accept('./containers/App', () => {
-    setImmediate(() => {
-      // Preventing the hot reloading error from react-router
-      unmountComponentAtNode(mountNode);
-      reRenderApp();
+    module.hot.accept('./containers/App', () => {
+        setImmediate(() => {
+            // Preventing the hot reloading error from react-router
+            unmountComponentAtNode(mountNode);
+            reRenderApp();
+        });
     });
-  });
 }
 
 renderApp();

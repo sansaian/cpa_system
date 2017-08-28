@@ -1,10 +1,10 @@
 import type {Dispatch} from './types';
-import {fetchUsersIfNeeded} from './containers/Home/action';
+import {fetchUsersIfNeeded} from './containers/OrderList/action';
 import {fetchUserIfNeeded} from './containers/UserInfo/action';
 import UserInfoPage from './containers/UserInfo';
 import NotFoundPage from './containers/NotFound';
-import CreateOffer from "./containers/CreateOffer/index";
-import HomePage from "./containers/Home/index";
+import CreateOffer from "./containers/CreateOffer";
+import HomePage from "./containers/OrderList";
 
 export default [
     {

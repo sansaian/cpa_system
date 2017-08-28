@@ -1,16 +1,16 @@
 @import '../../theme/variables';
 
 body {
-  background-color: $color-dark-gray;
+  background-color: $color-white;
   font-family: 'Helvetica-Light', Helvetica, Arial, sans-serif;
 }
 
 .App {
-  color: $color-white;
+  color: $color-dark-gray;
 
   .header {
     overflow: auto;
-    padding: 15px;
+    padding: 10px;
 
     img {
       float: left;

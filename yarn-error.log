@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Maksim\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start:production
+  C:\Program Files\nodejs\node.exe C:\Users\Maksim\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add antd
 
 PATH: 
   C:\Users\Maksim\AppData\Local\GitHub\PortableGit_f02737a78695063deace08e96d5042710d3e32db\cmd;C:\Users\Maksim\AppData\Local\GitHub\PortableGit_f02737a78695063deace08e96d5042710d3e32db\usr\bin;C:\Users\Maksim\AppData\Local\GitHub\PortableGit_f02737a78695063deace08e96d5042710d3e32db\usr\share\git-tfs;C:\Users\Maksim\AppData\Local\Apps\2.0\296JKQ74.BBP\RT4GC8R2.OYB\gith..tion_317444273a93ac29_0003.0003_5794af8169eeff14;C:\Users\Maksim\AppData\Local\GitHub\lfs-amd64_1.5.5;C:\Program Files\Docker\Docker\Resources\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\dotnet\;C:\php7;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Git\cmd;C:\Users\Maksim\AppData\Roaming\npm;C:\Users\Maksim\AppData\Local\Microsoft\WindowsApps;C:\Users\Maksim\AppData\Roaming\Composer\vendor\bin;C:\php7;;C:\Windows\Microsoft.NET\Framework\v4.0.30319\
@@ -172,14 +172,13 @@ npm manifest:
       }
     },
     "dependencies": {
-      "body-parser": "^1.17.2",
-      "express": "^4.15.4",
-      "fs": "0.0.1-security"
       "axios": "^0.16.2",
       "babel-polyfill": "^6.26.0",
+      "body-parser": "^1.17.2",
       "chalk": "^2.1.0",
       "compression": "^1.7.0",
       "express": "^4.15.4",
+      "fs": "0.0.1-security",
       "helmet": "^3.8.1",
       "history": "^4.6.3",
       "hpp": "^0.2.2",
@@ -194,12 +193,13 @@ npm manifest:
       "react-redux": "^5.0.6",
       "react-router-dom": "^4.1.2",
       "react-router-redux": "5.0.0-alpha.6",
+      "react-toolbox": "^2.0.0-beta.12",
       "redbox-react": "^1.5.0",
       "redux": "^3.7.2",
       "redux-thunk": "^2.2.0",
       "serialize-javascript": "^1.4.0",
       "serve-favicon": "^2.4.3",
-      "webpack-isomorphic-tools": "^3.0.3"
+      "webpack-isomorphic-tools": "^3.0.3",
     },
     "devDependencies": {
       "autoprefixer": "^7.1.2",
@@ -1625,6 +1625,21 @@ Lockfile:
     version "4.11.8"
     resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   
+  body-parser@^1.17.2:
+    version "1.17.2"
+    resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.17.2.tgz#f8892abc8f9e627d42aedafbca66bf5ab99104ee"
+    dependencies:
+      bytes "2.4.0"
+      content-type "~1.0.2"
+      debug "2.6.7"
+      depd "~1.1.0"
+      http-errors "~1.6.1"
+      iconv-lite "0.4.15"
+      on-finished "~2.3.0"
+      qs "6.4.0"
+      raw-body "~2.2.0"
+      type-is "~1.6.15"
+  
   boolbase@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
@@ -1769,6 +1784,10 @@ Lockfile:
   builtin-status-codes@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
+  
+  bytes@2.4.0:
+    version "2.4.0"
+    resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
   
   bytes@2.5.0:
     version "2.5.0"
@@ -3520,6 +3539,10 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   
+  fs@0.0.1-security:
+    version "0.0.1-security"
+    resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+  
   fsevents@^1.0.0:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
@@ -4038,7 +4061,7 @@ Lockfile:
       concat-stream "^1.4.6"
       http-response-object "^1.0.0"
   
-  http-errors@~1.6.2:
+  http-errors@~1.6.1, http-errors@~1.6.2:
     version "1.6.2"
     resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.2.tgz#0a002cc85707192a7e7946ceedc11155f60ec736"
     dependencies:
@@ -4066,6 +4089,10 @@ Lockfile:
   iconv-lite@0.4.13:
     version "0.4.13"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
+  
+  iconv-lite@0.4.15:
+    version "0.4.15"
+    resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
   
   iconv-lite@^0.4.17, iconv-lite@~0.4.13:
     version "0.4.18"
@@ -6569,6 +6596,10 @@ Lockfile:
     version "1.5.0"
     resolved "https://registry.yarnpkg.com/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
   
+  qs@6.4.0, qs@~6.4.0:
+    version "6.4.0"
+    resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+  
   qs@6.5.0, qs@^6.0.2, qs@^6.1.0:
     version "6.5.0"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.0.tgz#8d04954d364def3efc55b5a0793e1e2c8b1e6e49"
@@ -6576,10 +6607,6 @@ Lockfile:
   qs@~6.3.0:
     version "6.3.2"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
-  
-  qs@~6.4.0:
-    version "6.4.0"
-    resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
   
   query-string@^4.1.0:
     version "4.3.4"
@@ -6616,6 +6643,14 @@ Lockfile:
   range-parser@^1.0.3, range-parser@~1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
+  
+  raw-body@~2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.2.0.tgz#994976cf6a5096a41162840492f0bdc5d6e7fb96"
+    dependencies:
+      bytes "2.4.0"
+      iconv-lite "0.4.15"
+      unpipe "1.0.0"
   
   rc@^1.0.1, rc@^1.1.2, rc@^1.1.7:
     version "1.2.1"
@@ -7969,7 +8004,7 @@ Lockfile:
       json-stable-stringify "^1.0.0"
       through2-filter "^2.0.0"
   
-  unpipe@~1.0.0:
+  unpipe@1.0.0, unpipe@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   
@@ -8429,7 +8464,7 @@ Lockfile:
       fd-slicer "~1.0.1"
 
 Trace: 
-  SyntaxError: C:\Users\Maksim\Documents\GitHub\cpa_system\package.json: Unexpected string in JSON at position 4093
+  SyntaxError: C:\Users\Maksim\Documents\GitHub\cpa_system\package.json: Unexpected token } in JSON at position 4832
       at Object.parse (native)
       at C:\Users\Maksim\AppData\Roaming\npm\node_modules\yarn\lib\util\fs.js:554:57
       at next (native)
