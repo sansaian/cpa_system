@@ -3,6 +3,8 @@ import BootstrapTextInput from "../../utils/forms/bootstrapTextInput";
 import {isEmpty} from "../../utils/formValidations";
 import BaseForm from "../../utils/forms/baseForm";
 import BootstrapSelectInput from "../../utils/forms/bootstrapSelectInput";
+import BootstrapTextArea from "../../utils/forms/bootstrapTextArea";
+import {makeApiPost} from "../../utils/apiCalls";
 
 export default class EditEmail extends BaseForm {
     constructor(props, context) {
@@ -11,25 +13,23 @@ export default class EditEmail extends BaseForm {
         this.state = {
             link: '',
             price: '',
-            goal: '',
+            goal: 1,
             description: '',
-            geography: '',
             source: '',
             age: '',
 
-            goalTypes: [
-                "Подтвержденная регистрация",
-                "Оплата заказа",
-                "Заказ карты",
-                "Донат на ICO бабушке друга"
-            ],
+            goalTypes: {
+                1: "Подтвержденная регистрация",
+                2: "Оплата заказа",
+                3: "Заказ карты",
+                4: "Лиды для ICO бабушки",
+            },
 
             errors: {
                 link: null,
                 price: null,
                 goal: null,
                 description: null,
-                geography: null,
                 source: null,
                 age: null
             },
@@ -59,12 +59,6 @@ export default class EditEmail extends BaseForm {
                         errorMessage: "Поле не может быть пустым"
                     }
                 ],
-                geography: [
-                    {
-                        func: isEmpty,
-                        errorMessage: "Поле не может быть пустым"
-                    }
-                ],
                 source: [
                     {
                         func: isEmpty,
@@ -82,54 +76,28 @@ export default class EditEmail extends BaseForm {
     }
 
     submitForm() {
-        // if (this.state.code === null) {
-        //     api.changePassword(this.state.oldPassword, this.state.newPassword).then((data) => {
-        //         this.handleResult(data);
-        //     });
-        // } else {
-        //     api.confirmResetPassword(this.state.code, this.state.newPassword).then((data) => {
-        //         this.handleResult(data);
-        //     });
-        // }
+        let result = {
+            name: 'Рекламодатель',
+            price: this.state.price,
+            goal: this.state.goalTypes[this.state.goal],
+            description: this.state.description,
+            source: this.state.source,
+            age: this.state.age,
+        };
+
+        const url = 'http://localhost:3000/api/offer';
+        makeApiPost(url, JSON.stringify(result)).then(() => {
+            this.handleResult();
+        });
     }
 
-    handleResult(data) {
+    handleResult() {
         let newState = Object.assign({}, this.state);
 
-        switch (data.status) {
-            case "success":
-                newState.message = {
-                    type: "success",
-                    text: "Пароль успешно изменен"
-                };
-
-                const name = this.state.email;
-
-                const promise = new Promise(
-                    function (resolve) {
-                        logIn(name);
-                        resolve('success');
-                    });
-
-                promise.then(this.setState(newState));
-                break;
-            default:
-                for (let errorField in data.data) {
-                    if (data.data.hasOwnProperty(errorField)) {
-                        if (errorField === "errors" || errorField === "") {
-                            newState.message = {
-                                type: "fail",
-                                text: data.data[errorField][0]
-                            };
-                            continue;
-                        }
-
-                        newState.errors[errorField.toLowerCase()] = [data.data[errorField][0]];
-                    }
-                }
-
-                break;
-        }
+        newState.message = {
+            type: "success",
+            text: "Вы успешно разместили заказ, скоро трафик польется рекой ;)"
+        };
 
         this.setState(newState);
     };
@@ -154,18 +122,11 @@ export default class EditEmail extends BaseForm {
     };
 
     render() {
-        // link: '',
-        //     price: '',
-        //     goal: '',
-        //     description: '',
-        //     geography: '',
-        //     source: '',
-        //     age: '',
         return <form onSubmit={this.onSubmit}>
             <div className="row col-md-4 col-md-offset-4 top-buffer">
                 <div className="panel panel-info">
                     <div className="panel-heading">
-                        <h3 className="panel-title">Создайте предложерие для вебмастера</h3>
+                        <h3 className="panel-title">Создайте предложение для вебмастера</h3>
                     </div>
                     <div className="panel-body">
                         <BootstrapTextInput
@@ -196,22 +157,45 @@ export default class EditEmail extends BaseForm {
                             onBlur={this.onBlur}
                             value={this.state['goal']}
                             error={this.state.errors['goal']}
+                            options={this.state.goalTypes}
                             validation={this.state.validations['goal']}
                             type={"text"}
                             name="goal"
                             placeholder=""
-                            label="Стоймость выполнения цели"
+                            label="Цель"
+                        />
+                        <BootstrapTextArea
+                            onChange={this.onChange}
+                            onBlur={this.onBlur}
+                            value={this.state['description']}
+                            error={this.state.errors['description']}
+                            validation={this.state.validations['description']}
+                            type={"text"}
+                            name="description"
+                            placeholder=""
+                            label="Описание"
                         />
                         <BootstrapTextInput
                             onChange={this.onChange}
                             onBlur={this.onBlur}
-                            value={this.state['price']}
-                            error={this.state.errors['price']}
-                            validation={this.state.validations['price']}
+                            value={this.state['age']}
+                            error={this.state.errors['age']}
+                            validation={this.state.validations['age']}
                             type={"text"}
-                            name="price"
+                            name="age"
                             placeholder=""
-                            label="Стоймость выполнения цели"
+                            label="Возраст целевой аудитории"
+                        />
+                        <BootstrapTextArea
+                            onChange={this.onChange}
+                            onBlur={this.onBlur}
+                            value={this.state['source']}
+                            error={this.state.errors['source']}
+                            validation={this.state.validations['source']}
+                            type={"text"}
+                            name="source"
+                            placeholder=""
+                            label="Источники трафика"
                         />
                         {this.prepareMessage()}
                         <div className="form-group">
