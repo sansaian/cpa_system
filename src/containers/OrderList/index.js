@@ -1,23 +1,60 @@
 import React, {Component} from 'react';
+import {makeApiGet} from "../../utils/apiCalls";
 
 export default class OrderList extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            items: []
+        },
+
+        this.drawRows = this.drawRows.bind(this);
+    }
+
+    componentDidMount() {
+        const url = 'http://localhost:3000/api/offer';
+        makeApiGet(url).then((data) => {
+            this.prepareRows(data);
+        });
+    }
+
+    prepareRows(data) {
+        let newState = Object.assign({}, this.state);
+        for (let i = 0; i < data.length; i++) {
+            newState.items[data[i].id] = data[i];
+        }
+        this.setState(newState);
+    }
+
+    drawRows() {
+        let result = [];
+        let currentRow;
+        for (let i = 0; i < this.state.items.length; i++) {
+            currentRow = this.state.items[i];
+            result.push(
+                <div className="row">
+                    <h2>Предложение от {currentRow.name}</h2>
+                    <dl>
+                        <dt>Стоймость действия</dt>
+                        <dd>{currentRow.price}</dd>
+                        <dt>Стоймость действия</dt>
+                        <dd>{currentRow.price}</dd>
+                        <dt>Возраст</dt>
+                        <dd>{currentRow.age}</dd>
+                        <dt>Описание</dt>
+                        <dd>{currentRow.description}</dd>
+                    </dl>
+                </div>
+            );
+        }
+        return result;
+    }
+
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <h2>Definition List 1</h2>
-                    <dl>
-                        <dt>CSS</dt>
-                        <dd>Cascading Style Sheets</dd>
-                        <dt>HTML</dt>
-                        <dd>HyperText Markup Language</dd>
-                        <dt>How To Meet Ladies</dt>
-                        <dd>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et
-                            gorilla congolium sic ad nauseum. Souvlaki ignitus carborundum e pluribus
-                            unum. Defacto lingo est igpay atinlay. Marquee selectus non provisio
-                            incongruous feline nolo contendre.</dd>
-                    </dl>
-                </div>
+                {this.drawRows()}
             </div>
         );
     }
